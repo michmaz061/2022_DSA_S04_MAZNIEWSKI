@@ -5,6 +5,16 @@
 /.pnp
 .pnp.js
 
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+.vscode
+*.launch
+.settings/
+*.sublime-workspace
+
 # testing
 /coverage
 
