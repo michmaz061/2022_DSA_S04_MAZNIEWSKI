@@ -16,7 +16,7 @@ const Copyright = (props: any) => {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://gitub.com/RodrigoMoOr/">
+      <Link color="inherit" href="https://github.com/RodrigoMoOr/">
         The Silesian University of Technology
       </Link>{' '}
       {new Date().getFullYear()}
@@ -46,7 +46,7 @@ export const Login = () => {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: 'url(https://images5.alphacoders.com/808/808254.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -64,6 +64,9 @@ export const Login = () => {
               alignItems: 'center',
             }}
           >
+            <Typography component="h1" variant="h4">
+              Welcome to The Library
+            </Typography>
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
