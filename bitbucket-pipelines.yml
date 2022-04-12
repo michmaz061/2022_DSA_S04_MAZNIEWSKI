@@ -1,31 +1,46 @@
+# Image of NodeJS to be use (general for all pipeline)
 image: node:16.14.2
 
 pipelines:
   branches:
+    # CI pipeline that will run on all feature branches
     feature/*:
-      name: Run Unit Tests
-        caches:
-          - node
-        script:
-          - npm install
-          - npm run test
+      - step:
+          name: Run Unit Tests
+          caches:
+            - node
+          # script list of commands that are executed in sequence:
+          # Installing all dependencies
+          # Running the automated test from project
+          script:
+            - npm install
+            - npm run test
 
+    # CI Pipeline that will run on develop branch (when PRs are merged from feature branches -> develop)
     develop:
       - step:
           name: Run Unit Tests
+          # Using a cache the dependecies are downloaded once to atlasian's servers and then locally loaded into the build each time
           caches:
             - node
           script:
             - npm install
             - npm run test
+      # TODO: Commented while we figure out how to run 2e2 tests in Bitbucket pipeline container
+      #      - step:
+      #          name: Run End-to-End Test
+      #          script:
+      #            - npm run test:e2e
       - step:
           name: Compile Application
           caches:
             - node
           script:
+
             - npm install
             - npm run build
 
+    # CD Pipeline to deploy app to Heroku
     master:
       - step:
           name: Run Unit Tests
