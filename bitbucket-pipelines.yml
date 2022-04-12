@@ -25,3 +25,34 @@ pipelines:
           script:
             - npm install
             - npm run build
+
+    master:
+      - step:
+          name: Run Unit Tests
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run test
+      - step:
+          name: Compile Application
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run build
+      - step:
+          name: Create App Artifact for Deployment
+          script:
+            - tar czfv application.tgz dist/
+      - step:
+          name: Deploy to Heroku
+          deployment: production
+          caches:
+            - node
+          script:
+            - pipe: atlassian/heroku-deploy:0.1.1
+              variables:
+                HEROKU_API_KEY: $HEROKU_API_KEY
+                HEROKU_APP_NAME: $HEROKU_APP_NAME
+                ZIP_FILE: 'application.tgz'
