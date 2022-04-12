@@ -59,6 +59,7 @@ pipelines:
       - step:
           name: Create App Artifact for Deployment
           script:
+          #Creating archive for solution
             - tar czfv application.tgz dist/
       - step:
           name: Deploy to Heroku
@@ -70,4 +71,6 @@ pipelines:
               variables:
                 HEROKU_API_KEY: $HEROKU_API_KEY
                 HEROKU_APP_NAME: $HEROKU_APP_NAME
+                #The value of the ZIP_FILE variable is a path 
+                #to the tar.gz file containing a valid Heroku application sources
                 ZIP_FILE: 'application.tgz'
