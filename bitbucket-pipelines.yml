@@ -1,0 +1,27 @@
+image: node:16.14.2
+
+pipelines:
+  branches:
+    feature/*:
+      name: Run Unit Tests
+        caches:
+          - node
+        script:
+          - npm install
+          - npm run test
+
+    develop:
+      - step:
+          name: Run Unit Tests
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run test
+      - step:
+          name: Compile Application
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run build
