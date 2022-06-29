@@ -1,0 +1,63 @@
+# Image of NodeJS to be use (general for all pipeline)
+image: node:16.14.2
+
+pipelines:
+  branches:
+    # CI pipeline that will run on all feature branches
+    #    feature/*:
+    #      - step:
+    #          name: Run Unit Tests
+    #          caches:
+    #            - node
+    #          # script list of commands that are executed in sequence:
+    #          # Installing all dependencies
+    #          # Running the automated test from project
+    #          script:
+    #            - npm install
+    #            - npm run test
+
+    # CI Pipeline that will run on develop branch (when PRs are merged from feature branches -> develop)
+    develop:
+      #      TODO: implement this step when unit tests are written
+      #      - step:
+      #          name: Run Unit Tests
+      #          # Using a cache the dependecies are downloaded once to atlasian'dto servers and then locally loaded into the build each time
+      #          caches:
+      #            - node
+      #          script:
+      #            - npm install
+      #            - npm run test
+      # TODO: Commented while we figure out how to run 2e2 tests in Bitbucket pipeline container
+      #      - step:
+      #          name: Run End-to-End Test
+      #          script:
+      #            - npm run test:e2e
+      - step:
+          name: Compile Application
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run build
+
+    # CD Pipeline to deploy app to Heroku
+    master:
+      #      - step:
+      #          name: Run Unit Tests
+      #          caches:
+      #            - node
+      #          script:
+      #            - npm install
+      #            - npm run test
+      - step:
+          name: Compile Application
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run build
+            - git add -A
+            - git config --global user.email "andresmorales.ro@gmail.com"
+            - git config --global user.name "Rodrigo Morales"
+            - git commit -m "production build" --no-verify
+            - git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master:master
