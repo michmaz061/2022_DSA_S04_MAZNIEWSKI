@@ -1,0 +1,17 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 88px 64px 64px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.description {
+  width: 50%;
+  text-align: center;
+}

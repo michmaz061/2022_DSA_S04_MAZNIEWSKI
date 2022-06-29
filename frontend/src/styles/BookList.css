@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.bookInList {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  /* border-bottom: 1px solid #CCC; */
+}
+
+.bookInList img {
+  width: 150px;
+  margin: 5px;
+}
+
+.bookCard {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 10px;
+  padding: 2px;
+}
+
+.bookList {
+  font-family: 'Montserrat', sans-serif;
+  /* min-height: 528px; */
+  max-height: 58vh;
+  overflow: auto;
+}
+
+.bookInList h3 {
+  font-weight: 1200;
+  font-size: 15pt;
+}
+
+.bookInList p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12pt;
+  font-weight: 300;
+}

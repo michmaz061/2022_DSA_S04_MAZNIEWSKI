@@ -1,0 +1,14 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 32px 0;
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  margin: 16px 0 24px;
+}
